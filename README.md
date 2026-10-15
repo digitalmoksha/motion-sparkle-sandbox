@@ -30,11 +30,11 @@ After building your app for release and running `rake sparkle:package`, all you 
 
 ## Compatibility
 
-### Mac OS X 10.11 and above
+### macOS 10.13 and above
 
 - Use the latest version of **motion-sparkle-sandbox**
 - You will need RubyMotion version 5.0 or above
-- Sparkle 2 now requires Mac OS X 10.11 (El Capitan) or later
+- Sparkle 2.9 requires macOS 10.13 (High Sierra) or later
 
 ## Installation
 

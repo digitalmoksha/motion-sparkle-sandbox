@@ -25,7 +25,6 @@ describe 'Appcast' do
         '--versions=test7',
         '--maximum-deltas=test8',
         '--delta-compression=test9',
-        '--delta-compression-level=test10',
         '--channel=test11',
         '--major-version=test12',
         '--ignore-skipped-upgrades-below-version=test13',
@@ -44,7 +43,6 @@ describe 'Appcast' do
       @appcast.process_option?(:versions, 'test7')
       @appcast.process_option?(:maximum_deltas, 'test8')
       @appcast.process_option?(:delta_compression, 'test9')
-      @appcast.process_option?(:delta_compression_level, 'test10')
       @appcast.process_option?(:channel, 'test11')
       @appcast.process_option?(:major_version, 'test12')
       @appcast.process_option?(:ignore_skipped_upgrades_below_version, 'test13')

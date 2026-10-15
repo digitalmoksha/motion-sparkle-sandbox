@@ -46,9 +46,14 @@ module Motion
         args = []
 
         if appcast.use_exported_private_key && File.exist?(private_key_path)
-          # -s <private-key>        The private EdDSA (ed25519) key
-          private_key = File.read(private_key_path)
-          args << "-s=#{private_key}"
+          # --ed-key-file <private-key-file>
+          #   Path to the file containing the private EdDSA (ed25519) key.
+          #   (`-s <private-key>` is deprecated and unsupported for newly generated keys)
+          args << "--ed-key-file=#{private_key_path}"
+        elsif appcast.cli_options[:account].present?
+          # --account <account>
+          #   The account name in your keychain associated with your private keys
+          args << "--account=#{appcast.cli_options[:account]}"
         end
 
         results, _status = Open3.capture2e(sign_update_app, *args, package)

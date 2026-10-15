@@ -27,7 +27,6 @@ module Motion
           versions: '--versions',
           maximum_deltas: '--maximum-deltas',
           delta_compression: '--delta-compression',
-          delta_compression_level: '--delta-compression-level',
           channel: '--channel',
           major_version: '--major-version',
           ignore_skipped_upgrades_below_version: '--ignore-skipped-upgrades-below-version',
@@ -101,7 +100,6 @@ module Motion
           versions(args)
           maximum_deltas(args)
           delta_compression(args)
-          delta_compression_level(args)
           channel(args)
           major_version(args)
           ignore_skipped_upgrades_below_version(args)
@@ -209,18 +207,6 @@ module Motion
           return unless cli_options[:delta_compression].present?
 
           args << "--delta-compression=#{cli_options[:delta_compression]}"
-        end
-
-        # --delta-compression-level <delta-compression-level>
-        #                         The compression level to use for generating delta
-        #                         updates. This only applies if the compression method
-        #                         used is bzip2 which accepts values from 1 - 9. A
-        #                         special value of 0 will use the default compression
-        #                         level. (default: 0)
-        def delta_compression_level(args)
-          return unless cli_options[:delta_compression_level].present?
-
-          args << "--delta-compression-level=#{cli_options[:delta_compression_level]}"
         end
 
         # --channel <channel-name>
