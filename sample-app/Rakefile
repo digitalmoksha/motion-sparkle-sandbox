@@ -16,7 +16,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'sample-app'
-  app.deployment_target = '10.14'
+  app.deployment_target = '13.3'
   app.info_plist['CFBundleIconName'] = 'AppIcon'
   app.codesign_certificate = '-' # use an ad-hoc signing certificate
 

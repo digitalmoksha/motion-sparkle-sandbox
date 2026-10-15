@@ -51,7 +51,9 @@ module Motion
           `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime "#{sparkle_path}/Versions/B/Autoupdate"`
           `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime "#{sparkle_path}/Versions/B/Updater.app"`
           `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime "#{sparkle_path}/Versions/B/XPCServices/Installer.xpc"`
-          `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime --entitlements "./vendor/Pods/Sparkle/Entitlements/Downloader.entitlements" "#{sparkle_path}/Versions/B/XPCServices/Downloader.xpc"` # rubocop:disable Layout/LineLength
+          # Sparkle >= 2.6 no longer ships the `Entitlements` directory - the Downloader's entitlements
+          # are embedded in its signature. See https://sparkle-project.org/documentation/sandboxing/
+          `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime --preserve-metadata=entitlements "#{sparkle_path}/Versions/B/XPCServices/Downloader.xpc"`
 
           `/usr/bin/codesign -f -s "#{config.codesign_certificate}" -o runtime "#{sparkle_path}"`
         end

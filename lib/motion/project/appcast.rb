@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
+# rubocop:disable-next Metrics/ClassLength
 module Motion
   module Project
     class Sparkle
@@ -27,7 +27,6 @@ module Motion
           versions: '--versions',
           maximum_deltas: '--maximum-deltas',
           delta_compression: '--delta-compression',
-          delta_compression_level: '--delta-compression-level',
           channel: '--channel',
           major_version: '--major-version',
           ignore_skipped_upgrades_below_version: '--ignore-skipped-upgrades-below-version',
@@ -65,7 +64,7 @@ module Motion
           @use_exported_private_key = false
         end
 
-        def process_option(key, value)
+        def process_option?(key, value)
           if CLI_OPTIONS.keys.include?(key)
             cli_options[key] = value
           elsif PARAMS.include?(key)
@@ -101,7 +100,6 @@ module Motion
           versions(args)
           maximum_deltas(args)
           delta_compression(args)
-          delta_compression_level(args)
           channel(args)
           major_version(args)
           ignore_skipped_upgrades_below_version(args)
@@ -211,18 +209,6 @@ module Motion
           args << "--delta-compression=#{cli_options[:delta_compression]}"
         end
 
-        # --delta-compression-level <delta-compression-level>
-        #                         The compression level to use for generating delta
-        #                         updates. This only applies if the compression method
-        #                         used is bzip2 which accepts values from 1 - 9. A
-        #                         special value of 0 will use the default compression
-        #                         level. (default: 0)
-        def delta_compression_level(args)
-          return unless cli_options[:delta_compression_level].present?
-
-          args << "--delta-compression-level=#{cli_options[:delta_compression_level]}"
-        end
-
         # --channel <channel-name>
         #                         The Sparkle channel name that will be used for
         #                         generating new updates. By default, no channel is
@@ -306,4 +292,3 @@ module Motion
     end
   end
 end
-# rubocop:enable Metrics/ClassLength
